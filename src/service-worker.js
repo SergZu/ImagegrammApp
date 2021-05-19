@@ -9,8 +9,7 @@ const assetsUrls = [
     './ba0cee2f4f5d87e2e775.png',
     './bbf45acebb209809c712.png',
     './main.bundle.js',
-    './runtime.bundle.js',
-    './vendors.bundle.js'
+    './runtime.bundle.js'
 ];
 
 self.addEventListener('install', async () => {
@@ -30,7 +29,7 @@ self.addEventListener('activate', async () => {
 })
 
 self.addEventListener('fetch', (evt) => {
-    const { request } = event;
+    const { request } = evt;
   event.respondWith(cacheData(request));
 });
 
