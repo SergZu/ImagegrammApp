@@ -35,7 +35,7 @@ const LogIn = () => {
         setLoading(false);
             setMessage('Log in successfully');
             await window.setTimeout(()=> { 
-            history.push('/')
+            history.push('/ImagegrammApp/')
         }, 2000); 
     };
     return (
