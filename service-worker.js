@@ -50,7 +50,7 @@ async function cacheData(request) {
 
 async function networkFirst(request) {
   const cache = await caches.open(dinamicCacheName);
-  console.dir(response);
+  console.dir(request);
   try {
     const response = await fetch(request);
     cache.put(request, response.clone());
