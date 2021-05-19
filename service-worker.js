@@ -50,17 +50,9 @@ async function cacheData(request) {
 
 async function networkFirst(request) {
   const cache = await caches.open(dinamicCacheName);
-  if (request.method === 'POST') {
-      try {
-          const response = await fetch(request);
-      } catch(err) {
-        throw new Error(err.message)
-      }
-      return response
-  }
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (request.method === 'GET') cache.put(request, response.clone());
     return response;
   } catch (error) {
     return await cache.match(request);
