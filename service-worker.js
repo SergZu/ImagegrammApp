@@ -36,7 +36,7 @@ self.addEventListener('activate', async () => {
 })
 
 self.addEventListener('fetch', (evt) => {
-    const { request } = event;
+    const { request } = evt;
   event.respondWith(cacheData(request));
 });
 
