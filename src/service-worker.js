@@ -3,13 +3,20 @@ const dinamicCacheName = 'd-img-app-cache-v2';
 
 const assetsUrls = [
     './offline.html',
-    './562da37d6e67dc462463.png',
-    './a53e6c1ad8f07dfc3b85.png',
-    './b55ff10166658c2c2294.png',
-    './ba0cee2f4f5d87e2e775.png',
-    './bbf45acebb209809c712.png',
+    './4ea60ea28f8b5c31d6ea.svg',
+    './700308ce9df21ff24ef3.png',
+    './d484f0be3d0a6401d389.svg',
+    './f0fea10b2a66b731a71f.gif',
     './main.bundle.js',
-    './runtime.bundle.js'
+    './runtime.bundle.js',
+    './33.bundle.js',
+    './101.bundle.js',
+    './128.bundle.js',
+    './178.bundle.js',
+    './213.bundle.js',
+    './686.bundle.js',
+    './850.bundle.js',
+    './867.bundle.js'
 ];
 
 self.addEventListener('install', async () => {
@@ -45,7 +52,7 @@ async function networkFirst(request) {
   const cache = await caches.open(dinamicCacheName);
   try {
     const response = await fetch(request);
-    cache.put(request, response.clone());
+    if (request.method === 'GET') cache.put(request, response.clone());
     return response;
   } catch (error) {
     return await cache.match(request);
