@@ -34,7 +34,7 @@ const ResetPassword = () => {
         setLoading(false);
         setMessage('Password reset successful, check your inbox for further instructions');
         await window.setTimeout(()=> { 
-        history.push('/')
+        history.push('/ImagegrammApp/')
         }, 2000);
     };
     return (
