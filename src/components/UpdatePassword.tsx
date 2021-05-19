@@ -40,7 +40,7 @@ const UpdatePassword = () => {
         setLoading(false);
         setMessage('Password updated successfully');
         await window.setTimeout(()=> { 
-        history.push('/')
+        history.push('/ImagegrammApp/')
         }, 2000);
     };
     return (
