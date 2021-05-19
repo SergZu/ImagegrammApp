@@ -1,6 +1,8 @@
-const cacheName = 'img-app-cache-v1';
+const staticCacheName = 's-img-app-cache-v2';
+const dinamicCacheName = 'd-img-app-cache-v2';
 
 const assetsUrls = [
+    './offline.html',
     './4ea60ea28f8b5c31d6ea.svg',
     './700308ce9df21ff24ef3.png',
     './d484f0be3d0a6401d389.svg',
@@ -17,33 +19,47 @@ const assetsUrls = [
     './867.bundle.js'
 ];
 
-const takeFromCache = async (request) => {
-    try {
-        const cached = await caches.match(request);
-        if (cached) {
-            return cached;     
-        } else {
-            const response = await fetch(request);
-            const cache = await caches.open(cacheName);
-            await cache.put(request.url, response.clone());
-            return response
-        }
-    }
-    catch(err) {
-        console.log('Fetch error', err);
-        return null
-    }
-}
-
 self.addEventListener('install', async () => {
-    const cache = await caches.open(cacheName);
+    self.skipWaiting();
+    const cache = await caches.open(staticCacheName);
     await cache.addAll(assetsUrls);
 });
 
-self.addEventListener('fetch', (evt) => {
-    evt.respondWith( takeFromCache(evt.request) )
-        
+self.addEventListener('activate', async () => {
+    const cachesNames = await caches.keys();
+    await Promise.all(
+        cachesNames
+        .filter((item) => (item !== staticCacheName && item !== dinamicCacheName) )
+        .map((item) => caches.delete(item))
+    );
+    return self.clients.claim()
 })
+
+self.addEventListener('fetch', (evt) => {
+    const { request } = event;
+  event.respondWith(cacheData(request));
+});
+
+async function cacheData(request) {
+  const cashedRequest = await caches.match(request);
+  if (staticAssets.some(sa => request.url.indexOf(sa) >= 0) || request.headers.get('accept').includes('text/html')) {
+    return cashedRequest || await caches.match('./offline.html') || networkFirst(request);
+  }
+  return cashedRequest || networkFirst(request);
+}
+
+async function networkFirst(request) {
+  const cache = await caches.open(dinamicCacheName);
+  try {
+    const response = await fetch(request);
+    cache.put(request, response.clone());
+    return response;
+  } catch (error) {
+    return await cache.match(request);
+  }
+}
+
+
 
 self.addEventListener('activate', async () => {
     const cachesNames = await caches.keys();
