@@ -37,7 +37,7 @@ self.addEventListener('activate', async () => {
 
 self.addEventListener('fetch', (evt) => {
     const { request } = evt;
-  event.respondWith(cacheData(request));
+  evt.respondWith(cacheData(request));
 });
 
 async function cacheData(request) {
@@ -59,13 +59,3 @@ async function networkFirst(request) {
   }
 }
 
-
-
-self.addEventListener('activate', async () => {
-    const cachesNames = await caches.keys();
-    await Promise.all(
-        cachesNames
-        .filter((item) => item !== cacheName)
-        .map((item) => caches.delete(item))
-    )
-})
