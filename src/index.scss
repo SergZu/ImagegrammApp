@@ -1,0 +1,391 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --primary: #690751;
+    --secondary: #494747;
+    --error: #be4208;
+    --success: #0ec00e;
+    --secondaryTransparent: rgba(73, 71, 71, 0.2);
+    --link: #3417d4; 
+}
+
+html {
+    font-size: 16px;
+    box-sizing: border-box;
+        @media screen and (max-width: 500px) {
+            font-size: 13px;
+        }
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--secondary);
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: var(--link);
+}
+
+.error {
+    color: var(--error);
+    margin: 0.3rem auto;
+}
+
+.success {
+    color: var(--success);
+    margin: 0.3rem auto;
+}
+
+.App-wrapper {
+    max-width: 960px;
+    width: 90%;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+.App {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    @media screen and (max-width: 320px){
+        width: 100%;
+    }
+    @media screen and (min-width: 321px) and (max-width: 800){
+        width: 95%;
+    }
+}
+
+.App-spinner {
+    width: 64px;
+    height: 64px;
+    margin: 5px auto;
+    background: url('./assets/spinner.gif') center no-repeat;
+    background-size: contain;
+}
+
+.App-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    @media screen and (max-width: 360px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.App-authForm {
+    margin: 40px auto;
+    width: 30%;
+    min-width: 300px;
+    max-width: 400px;
+    color: var(--primary);
+    text-align: center;
+}
+
+.App-authForm-legend {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.App-authForm__fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    label {
+        font-size: 1.1rem;
+        &:first-child {
+            margin-top: 10px;
+        }
+    }
+    input {
+        padding: 0.5rem 1.75rem;
+        border: 1px solid var(--secondaryTransparent);
+        border-radius: 5px;
+        &::placeholder {
+            font-style: italic;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.App-authForm__btn {
+    padding: 0.6rem 5.5rem;
+    background-color: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.App-authForm__link {
+    display: inline-flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    color: var(--primary);
+}
+
+.App-logoutForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    max-width: 150px;
+    gap: 0.5rem;
+    min-width: 200px;
+    a {
+        width: 100%;
+        display: inline-flex;
+    }
+}
+
+.App-logout__btn {
+    margin: 0 auto;
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0.35rem 0;
+    width: 90%;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+}
+
+.App-auth__nav {
+    margin-top: 20px;
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 20%;
+    a {
+        display: block;
+        padding: 0.25rem 1.5rem;
+        background-color: var(--link);
+        text-align: center;
+        color: #fff;
+        border: 1px solid transparent;
+        border-radius: 5px;
+    }
+        @media screen and (max-width: 1025px) {
+            width: 30%;
+        }
+        @media screen and (max-width: 600px) {
+            width: 40%;
+        }
+        @media screen and (max-width: 360px) {
+            width: 90%;
+        }
+}
+
+.App-title {
+    width: 60%;
+    h3 {
+        color: var(--primary);
+        font-size: 1.4rem;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+    }
+    h2, p {
+        text-align: right;
+        @media screen and (max-width: 475px) {
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    }
+    h2 {
+        margin-top: 40px;
+        font-size: 2.5rem;
+    }
+}
+
+#file-upload-form {
+    display: none;
+}
+
+.App-uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+        label {
+            color: var(--primary);
+        }
+        input {
+            padding: 0.25rem 1rem;
+            border: 1px solid var(--secondaryTransparent);
+            border-radius: 5px;
+        } 
+}
+
+.App-uploadForm__btn {
+    padding: 0.25rem 0;
+    width: 20%;
+    background-color: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+}
+
+.file-upload-form__label {
+    margin: 0 auto;
+    display: block;
+    height: 7.5vw;
+    width: 7.5vw;
+    min-height: 60px;
+    min-width: 60px;
+    background: url('./assets/upload-image.png') center no-repeat;
+    background-size: contain;
+    cursor: pointer;
+        &:focus, &:hover {
+            box-shadow: 0 0 10px var(--primary);
+            transform: scale(1.1);
+            transition: 0.75s all ease ;
+        }
+
+}
+
+.App-uploadForm__progressBar {
+    height: 8px;
+    background-color: var(--primary);
+    margin-top: 25px;
+    align-self: flex-start;
+}
+
+.App-uploadForm__placeholder-noauth {
+    color: var(--primary);
+    margin: 1rem auto;
+    font-size: 1.2rem;
+}
+
+.App-imageGrid {
+    margin: 20px 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+    list-style-type: none;
+    @media screen and (max-width: 360px){
+        grid-template-columns: 1fr;
+    }
+    @media screen and (min-width: 361px) and (max-width: 800px){
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.App-imageGrid__imgWrapper {
+    
+    opacity: 0.8;
+    border: 1px solid transparent;
+    border-radius: 5px;
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            opacity: 1;
+        }
+        figure {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+}
+
+
+
+.App-imageGrid__image {
+    width: 100%;
+    aspect-ratio: 1/1; // Equal width and height
+}
+
+.App-imageGrid__image__title {
+    margin-top: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid var(--secondaryTransparent);
+    border-radius: 0 0 5px 5px;
+}
+
+.App-imageGrid__image__title__uploader {
+    font-size: 0.8rem;
+}
+
+.App-modal {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.App-modal__figure {
+    margin: 40px auto;
+    border: 3px solid #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        @media screen and (max-width: 600px){
+            max-width: 90%;
+            max-height: 95vh;
+        }
+        img {
+            max-width: 80vw;
+            max-height: 80vh;
+        }
+}
+
+.App-modal__imgInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.App-modal__imgInfo__row {
+    margin: 0 20px;
+    text-align: center;
+        &.title {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+}
+
+.App-modal__imgInfo__counter {
+    padding: 2px 4px;
+    font-size: 0.7rem;
+    border: 2px solid var(--secondaryTransparent);
+    border-radius: 3px;
+}
+
+.App-modal__imgInfo__likeBtn {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-left: 10px;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    border: none;
+    background : url('./assets/star-empty.svg') #fff center no-repeat;
+    background-size: contain;
+        &.active {
+            background : url('./assets/star-filled.svg') #fff center no-repeat; 
+        }
+}
+
