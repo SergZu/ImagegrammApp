@@ -37,7 +37,7 @@ const SignUp = () => {
         setLoading(false);
         setMessage('Sing up successfully');
         await window.setTimeout(()=> { 
-        history.push('/')
+        history.push('/ImagegrammApp/')
         }, 2000);
     };
     return (
