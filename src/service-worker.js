@@ -35,7 +35,7 @@ self.addEventListener('fetch', (evt) => {
 
 async function cacheData(request) {
   const cashedRequest = await caches.match(request);
-  if (staticAssets.some(sa => request.url.indexOf(sa) >= 0) || request.headers.get('accept').includes('text/html')) {
+  if (assetsUrls.some(sa => request.url.indexOf(sa) >= 0) || request.headers.get('accept').includes('text/html')) {
     return cashedRequest || await caches.match('./offline.html') || networkFirst(request);
   }
   return cashedRequest || networkFirst(request);
