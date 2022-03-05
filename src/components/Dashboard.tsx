@@ -8,6 +8,7 @@ import { modalImageProps } from '../types/types';
 
 const Dashboard = () => {
     const [ selectedImg, setSelectedImg ] = useState<modalImageProps|null>(null);
+    
     const onKeyDownHandler : React.KeyboardEventHandler<HTMLDivElement> = (evt) => {
         if (evt.key === 'Escape' || evt.key === 'Esc') setSelectedImg(null);
     }
@@ -21,7 +22,10 @@ const Dashboard = () => {
             <Suspense fallback={<div className='App-spinner'></div>}>
                 <ImageGrid setSelectedImg={setSelectedImg} />
             </Suspense>
-            {selectedImg && <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} /> }
+            {selectedImg && <Modal 
+                                    selectedImg={selectedImg} 
+                                    setSelectedImg={setSelectedImg} 
+                                    /> }
         </div>
     )
 }

@@ -1,18 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { firebaseApp } from '../firebase/config';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updatePassword, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, 
+         createUserWithEmailAndPassword, 
+         signInWithEmailAndPassword, 
+         signOut, 
+         sendPasswordResetEmail, 
+         updatePassword, 
+         onAuthStateChanged, 
+         User 
+        } from 'firebase/auth';
 
 import {authContext, AuthProviderProps } from '../types/types';
 
 const AuthContext = React.createContext<authContext | null>(null);
+
 // Create global storage and storage get hook
 export const useAuth = () =>  {
     return useContext(AuthContext as React.Context<authContext>)
 }
 const auth = getAuth(firebaseApp);
+
 export const AuthProvider = ({ children } : AuthProviderProps) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [currentUser, setCurrentUser] = useState<any>(null);
+
     // Authorization function using Firebase.auth SDK
     function signUp(email : string, password : string) {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -47,12 +58,12 @@ export const AuthProvider = ({ children } : AuthProviderProps) => {
     
 
     const value = {
-        currentUser,
-        signUp,
-        logIn,
-        logOut,
-        resetPassword,
-        updatePass 
+                    currentUser,
+                    signUp,
+                    logIn,
+                    logOut,
+                    resetPassword,
+                    updatePass 
     }
     return (
         <AuthContext.Provider value={value}>

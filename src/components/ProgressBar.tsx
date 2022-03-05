@@ -3,7 +3,14 @@ import useStorage from '../hooks/useStorage';
 import { ProgressBarProps } from '../types/types';
 import { motion } from 'framer-motion';
 
-const ProgressBar = ( { file, setFile, setTitle, setSubmitReady, title, user } : ProgressBarProps) => {
+const ProgressBar = ( { 
+                        file, 
+                        setFile, 
+                        setTitle, 
+                        setSubmitReady, 
+                        title, 
+                        user 
+                    } : ProgressBarProps) => {
 
     const { progress, url, error } = useStorage(file, title, user);
     useEffect(() => {
@@ -15,8 +22,16 @@ const ProgressBar = ( { file, setFile, setTitle, setSubmitReady, title, user } :
     }, [url]);
     return (
         <>
-        { error && (<span className='error'>{error}</span>)}
-        { !error && (<motion.div className='App-uploadForm__progressBar' initial={{ width : 0 }} animate={{ width : `${progress}%` }}></motion.div>) }
+            { error && (<span className='error'>
+                            {error}
+                        </span>)
+            }
+            { !error && (<motion.div 
+                                    className='App-uploadForm__progressBar' 
+                                    initial={{ width : 0 }} 
+                                    animate={{ width : `${progress}%` }}>
+                        </motion.div>) 
+            }
         </>
     )
 }

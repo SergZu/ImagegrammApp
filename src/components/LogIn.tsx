@@ -22,7 +22,8 @@ const LogIn = () => {
             return setError('Auth form error');
             
         }
-        if (!(emailCheckRegexp.test(emailRef.current.value))) return setError('Email address incorrect') ; 
+        if (!(emailCheckRegexp.test(emailRef.current.value))) return setError('Email address incorrect') ;
+
         try {
             setError('');
             setLoading(true);
@@ -40,19 +41,63 @@ const LogIn = () => {
     };
     return (
         <form className='App-authForm'>
-            <legend className='App-authForm-legend'>Log in to Imagegramm</legend> 
+            <legend className='App-authForm-legend'>
+                Log in to Imagegramm
+            </legend> 
             <fieldset className='App-authForm__fieldset'>
-                <label htmlFor='UserEmailField'>User email</label>
-                <input type='email' id='UserEmailField' ref={emailRef} placeholder='User email' required />
-                <label htmlFor='PasswordField'>Password</label>
-                <input type='password' id='PasswordField' ref={passwordRef} autoComplete='current-password' placeholder='Password' required />
-                <button onClick={onLogInClickHandler} disabled={loading} className='App-authForm__btn'>Log In</button>
-                {error && (<div className='error'>{error}</div>)}
-                {message && (<div className='success'>{message}</div>)}
+                <label htmlFor='UserEmailField'>
+                    User email
+                </label>
+                <input 
+                    type='email' 
+                    id='UserEmailField' 
+                    ref={emailRef} 
+                    placeholder='User email' 
+                    required 
+                />
+                <label htmlFor='PasswordField'>
+                    Password
+                </label>
+                <input 
+                    type='password' 
+                    id='PasswordField' 
+                    ref={passwordRef} 
+                    autoComplete='current-password' 
+                    placeholder='Password' 
+                    required 
+                />
+                <button 
+                    onClick={onLogInClickHandler} 
+                    disabled={loading} 
+                    className='App-authForm__btn'
+                >
+                    Log In
+                </button>
+
+                {error && (<div className='error'>
+                              {error}
+                           </div>)}
+
+                {message && (<div className='success'>
+                              {message}
+                            </div>)}
+
             </fieldset>
-            <span className='App-authForm__link'>Need an account :<Link to='/ImagegrammApp/signup'>Sign up</Link></span>
-            <span className='App-authForm__link'>Forgot password ? <Link to='/ImagegrammApp/resetPassword'>Reset password</Link></span>
-            <span className='App-authForm__link'><Link to='/ImagegrammApp/'>Back to app</Link></span>
+            <span className='App-authForm__link'>
+                Need an account :<Link to='/ImagegrammApp/signup'>
+                                    Sign up
+                                </Link>
+            </span>
+            <span className='App-authForm__link'>
+                Forgot password ? <Link to='/ImagegrammApp/resetPassword'>
+                                    Reset password
+                                  </Link>
+            </span>
+            <span className='App-authForm__link'>
+                <Link to='/ImagegrammApp/'>
+                    Back to app
+                </Link>
+            </span>
         </form>
     )
 }

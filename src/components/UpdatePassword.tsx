@@ -39,29 +39,74 @@ const UpdatePassword = () => {
         
         setLoading(false);
         setMessage('Password updated successfully');
+
         await window.setTimeout(()=> { 
         history.push('/ImagegrammApp/')
         }, 2000);
     };
     return (
         <>
-        {user && 
-        (<form className='App-authForm'>
-            <legend className='App-authForm-legend'>Update Password</legend>
-            <fieldset className='App-authForm__fieldset'>
-                <label htmlFor='UserEmailField'>User email</label>
-                <input type='email' id='UserEmailField' defaultValue={user} disabled placeholder='User email' required />
-                <label htmlFor='PasswordField'>Password</label>
-                <input type='password' id='PasswordField' ref={passwordRef} autoComplete='new-password' placeholder='New password' required />
-                <label htmlFor='PasswordConfirmField'>Password confirm</label>
-                <input type='password' id='PasswordConfirmField' ref={confirmPasswordRef} autoComplete='new-password' placeholder='New password again' required />
-                <button onClick={ onUpdateClickHandler } disabled={loading} type="submit" className='App-authForm__btn'>Update password</button>
-                {error && (<div className='error'>{error}</div>)}
-                {message && (<div className='success'>{message}</div>)}
-            </fieldset>
-            <span className='App-authForm__link'><Link to='/ImagegrammApp/'>Back to app</Link></span>
-        </form>)}
+        {user && (<form className='App-authForm'>
+                        <legend className='App-authForm-legend'>
+                            Update Password
+                        </legend>
+                        <fieldset className='App-authForm__fieldset'>
+                            <label htmlFor='UserEmailField'>
+                                User email
+                            </label>
+                        <input 
+                                type='email' 
+                                id='UserEmailField' 
+                                defaultValue={user} 
+                                disabled 
+                                placeholder='User email' 
+                                required 
+                        />
+                        <label htmlFor='PasswordField'>
+                            Password
+                        </label>
+                        <input 
+                                type='password' 
+                                id='PasswordField' 
+                                ref={passwordRef} 
+                                autoComplete='new-password' 
+                                placeholder='New password' 
+                                required 
+                        />
+                        <label htmlFor='PasswordConfirmField'>
+                            Password confirm
+                        </label>
+                        <input 
+                                type='password' 
+                                id='PasswordConfirmField' 
+                                ref={confirmPasswordRef} 
+                                autoComplete='new-password' 
+                                placeholder='New password again' 
+                                required 
+                        />
+                        <button 
+                                onClick={ onUpdateClickHandler } 
+                                disabled={loading} 
+                                type="submit" 
+                                className='App-authForm__btn'
+                        >
+                            Update password
+                        </button>
+
+                        {error && (<div className='error'>{error}</div>)}
+
+                        {message && (<div className='success'>{message}</div>)}
+
+                        </fieldset>
+                        <span className='App-authForm__link'>
+                            <Link to='/ImagegrammApp/'>
+                                Back to app
+                            </Link>
+                        </span>
+                    </form>)}
+
         {!currentUser && <h2>You need to login for update password</h2>}
+        
         </>
     )
 }

@@ -31,23 +31,54 @@ const ResetPassword = () => {
             setLoading(false);
             return setError(e.message)
         }
+
         setLoading(false);
         setMessage('Password reset successful, check your inbox for further instructions');
+
         await window.setTimeout(()=> { 
         history.push('/ImagegrammApp/')
         }, 2000);
     };
     return (
         <form className='App-authForm'>
-            <legend className='App-authForm-legend'>Password Reset</legend> 
+            <legend className='App-authForm-legend'>
+                Password Reset
+            </legend> 
             <fieldset className='App-authForm__fieldset'>
-                <label htmlFor='UserEmailField'>User email</label>
-                <input type='email' id='UserEmailField' ref={emailRef} placeholder='User email' required />
-                <button onClick={onResetClickHandler} disabled={loading} className='App-authForm__btn'>Reset password</button>
-                {error && (<div className='error'>{error}</div>)}
-                {message && (<div className='success'>{message}</div>)}
+                <label htmlFor='UserEmailField'>
+                    User email
+                </label>
+                <input 
+                        type='email' 
+                        id='UserEmailField' 
+                        ref={emailRef} 
+                        placeholder='User email' 
+                        required 
+                />
+                <button 
+                        onClick={onResetClickHandler} 
+                        disabled={loading} 
+                        className='App-authForm__btn'
+                >
+                    Reset password
+                </button>
+
+                {error && (<div className='error'>
+                               {error}
+                           </div>)
+                }
+
+                {message && (<div className='success'>
+                                {message}
+                             </div>)
+                }
+
             </fieldset>
-            <span className='App-authForm__link'><Link to='/ImagegrammApp/'>Back to app</Link></span>
+            <span className='App-authForm__link'>
+                <Link to='/ImagegrammApp/'>
+                    Back to app
+                </Link>
+            </span>
         </form>
     )
 }
